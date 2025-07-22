@@ -54,7 +54,7 @@ export function QuestionsList() {
           value={item.id}
           className="bg-gray-100 border-0 overflow-hidden"
         >
-          <AccordionTrigger className="px-4 lg:px-6 py-4 text-right hover:no-underline hover:bg-gray-100 transition-colors [&[data-state=open]]:bg-gray-100 group [&>svg]:hidden">
+          <AccordionTrigger className="px-4 lg:px-6 py-4 lg:py-8 text-right hover:no-underline hover:bg-gray-100 transition-colors [&[data-state=open]]:bg-gray-100 group [&>svg]:hidden">
             <div className="flex items-center justify-between w-full">
               <Image
                 src="/icons/answers_qeustions/question-mark.svg"
