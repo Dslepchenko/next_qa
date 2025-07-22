@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="he" dir="rtl">
       <body className={`${arimo.variable} ${heebo.variable} antialiased`}>
         {children}
       </body>
