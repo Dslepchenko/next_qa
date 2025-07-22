@@ -1,36 +1,182 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Next.js One-Page Application
 
-## Getting Started
+Современное одностраничное приложение с модульной архитектурой и дизайн-системой.
 
-First, run the development server:
+## ✨ Особенности
+
+- **📱 Одностраничное приложение** - Hero, About, Services, Contact секции
+- **🎨 Кастомная дизайн-система** - бирюзовый (#00CEAF) + жёлтый (#FFDF80)
+- **🔤 Google Fonts** - Arimo (заголовки) + Heebo (текст)
+- **🎭 Анимации** - Framer Motion + shadcn/ui
+- **📦 Модульная архитектура** - каждая секция в отдельной папке
+- **⚡ TypeScript** - полная типизация
+- **🎯 Современный стек** - Next.js 15 + TailwindCSS 4
+
+## 🛠️ Технологии
+
+- [Next.js 15](https://nextjs.org/) - React фреймворк
+- [TypeScript](https://www.typescriptlang.org/) - типизация
+- [TailwindCSS 4](https://tailwindcss.com/) - стили
+- [shadcn/ui](https://ui.shadcn.com/) - компоненты UI
+- [Framer Motion](https://www.framer.com/motion/) - анимации
+- [Google Fonts](https://fonts.google.com/) - типографика
+
+## 📁 Архитектура
+
+### Модульная структура секций
+
+```
+components/sections/
+├── hero/              ← Главная секция (100vh)
+│   ├── index.tsx      ← Основной компонент
+│   ├── hero-form.tsx  ← Форма обратной связи
+│   ├── stats-block.tsx ← Блок статистики
+│   └── scroll-indicator.tsx ← Индикатор прокрутки
+├── about/             ← Секция "О нас"
+│   ├── index.tsx
+│   ├── team-grid.tsx  ← Сетка команды
+│   └── company-stats.tsx ← Статистика компании
+├── services/          ← Секция услуг
+│   ├── index.tsx
+│   ├── service-card.tsx ← Карточка услуги
+│   └── pricing-table.tsx ← Таблица тарифов
+└── contact/           ← Секция контактов
+    ├── index.tsx
+    ├── contact-form.tsx ← Форма обратной связи
+    └── contact-info.tsx ← Контактная информация
+```
+
+### Преимущества модульной архитектуры
+
+- 🔗 **Инкапсуляция** - каждая секция самодостаточна
+- 📦 **Переиспользование** - секции можно копировать между проектами
+- 🚀 **Масштабируемость** - легко добавлять новые секции
+- 🛠️ **Поддержка** - изменения в одной секции не влияют на другие
+
+## 🎨 Дизайн-система
+
+### Цвета
+
+```css
+--primary: #00CEAF        /* Бирюзовый - основной */
+--accent: #FFDF80         /* Жёлтый - акцент */
+--background: #ffffff     /* Белый фон */
+--foreground: #000000     /* Чёрный текст */
+```
+
+### Типографика
+
+- **Arimo** - заголовки (64px h1, 24px h2)
+- **Heebo** - основной текст (20px)
+
+### Готовые классы
+
+```css
+/* Цвета */
+bg-primary text-primary-foreground
+bg-accent text-accent-foreground
+
+/* Шрифты */
+font-arimo    /* заголовки */
+font-heebo    /* основной текст */
+```
+
+## 🚀 Быстрый старт
+
+### Установка
+
+```bash
+git clone <repository>
+cd next_qa
+npm install
+```
+
+### Запуск разработки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Сборка
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 📝 Как добавить новую секцию
 
-To learn more about Next.js, take a look at the following resources:
+1. **Создать папку секции:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+mkdir components/sections/portfolio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Добавить основной компонент:**
 
-## Deploy on Vercel
+```tsx
+// components/sections/portfolio/index.tsx
+export function PortfolioSection() {
+  return (
+    <section id="portfolio" className="min-h-screen">
+      {/* Содержимое секции */}
+    </section>
+  );
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Добавить подкомпоненты:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```tsx
+// components/sections/portfolio/project-card.tsx
+export function ProjectCard() {
+  /* ... */
+}
+```
+
+4. **Импортировать в main page:**
+
+```tsx
+import { PortfolioSection } from "@/components/sections/portfolio";
+
+// Добавить в JSX
+<PortfolioSection />;
+```
+
+5. **Добавить в навигацию:**
+
+```tsx
+// components/navigation.tsx
+{ label: "Портфолио", href: "#portfolio" }
+```
+
+## 🎯 shadcn/ui компоненты
+
+### Добавление новых компонентов
+
+```bash
+npx shadcn@latest add dialog
+npx shadcn@latest add card
+npx shadcn@latest add input
+```
+
+### Использование
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+<Button variant="default" size="lg">
+  Кнопка
+</Button>;
+```
+
+## 📚 Документация
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - подробная архитектура
+- [SETUP.md](./SETUP.md) - детали настройки
+
+## 📄 Лицензия
+
+MIT
