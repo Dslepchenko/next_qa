@@ -29,11 +29,10 @@ export function HeroSection() {
           className="w-[200px] h-[55px]  md:w-[350px] md:h-[100px] lg:w-[500px] lg:h-[100px]"
         />
 
-        <div className="flex gap-2 lg:gap-6  flex-col-reverse items-center lg:flex-row lg:justify-between lg:items-center">
+        <div className="flex gap-2 lg:gap-6  flex-col-reverse items-center lg:flex-row-reverse lg:justify-between lg:items-center">
           <div className="flex-[0.8] mt-8 lg:mt-0">
             <RatingDesc />
           </div>
-
           <Rating />
         </div>
 

@@ -74,7 +74,7 @@ const features = [
 
 export function FeaturesList() {
   return (
-    <div className="flex flex-col lg:flex-row-reverse items-end lg:items-start justify-between gap-4 lg:gap-8 w-full max-w-[90%] lg:max-w-[80%] mx-auto py-8">
+    <div className="flex flex-col lg:flex-row items-start lg:items-start justify-between gap-4 lg:gap-8 w-full max-w-[90%] lg:max-w-[80%] mx-auto py-8">
       {features.map((feature) => (
         <FeatureItem key={feature.title} {...feature} />
       ))}

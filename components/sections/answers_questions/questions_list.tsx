@@ -61,6 +61,7 @@ export function QuestionsList() {
                 alt="question mark"
                 width={24}
                 height={24}
+                className="w-[24px] h-[auto] lg:w-[32px] lg:h-[auto]"
               />
               <h2 className="text-[18px] font-heebo  lg:text-[24px] font-semibold text-black text-right flex-1 mx-4">
                 {item.question}
@@ -71,7 +72,7 @@ export function QuestionsList() {
                   alt="arrow"
                   width={17}
                   height={17}
-                  className="group-data-[state=open]:hidden transition-all"
+                  className="group-data-[state=open]:hidden transition-all w-[12px] h-[auto] lg:w-[17px] lg:h-[auto]"
                 />
                 <Image
                   src="/icons/answers_qeustions/arrow_up.svg"

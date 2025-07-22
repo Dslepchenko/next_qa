@@ -36,7 +36,7 @@ export function Form() {
       className="p-6 text-right w-full max-w-[1000px] mx-auto"
     >
       {/* DESKTOP: horizontal layout */}
-      <div className="hidden lg:flex lg:flex-row gap-4 mb-4">
+      <div className="hidden lg:flex lg:flex-row-reverse gap-4 mb-4">
         <Button
           type="submit"
           disabled={!isFormValid}
@@ -92,7 +92,7 @@ export function Form() {
           required
         />
 
-        <label className="flex flex-row-reverse items-center gap-2 text-[16px] font-[600] text-black cursor-pointer">
+        <label className="flex flex-row items-center gap-2 text-[16px] font-[600] text-black cursor-pointer">
           <input
             type="checkbox"
             name="agreedToTerms"
@@ -122,9 +122,9 @@ export function Form() {
       </div>
 
       {/* DESKTOP: bottom text and checkbox */}
-      <div className="hidden lg:flex justify-between items-center text-[16px] font-[600] text-black">
+      <div className="hidden lg:flex flex-row-reverse justify-between items-center text-[16px] font-[600] text-black">
         <span>המנהל שלנו יצור איתך קשר תוך 10 דקות.</span>
-        <label className="flex flex-row-reverse items-center gap-2 cursor-pointer">
+        <label className="flex flex-row items-center gap-2 cursor-pointer">
           <input
             type="checkbox"
             name="agreedToTerms"

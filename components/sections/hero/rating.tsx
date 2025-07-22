@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function Rating() {
   return (
-    <div className="flex flex-col-reverse md:flex-row items-center justify-end">
+    <div className="flex flex-col-reverse lg:flex-row-reverse items-center justify-end">
       <div className="flex flex-col items-center text-right gap-2">
         <p className="text-[20px] font-bold text-primary">
           מעל 1300+ תלמידים מרוצים
