@@ -41,14 +41,33 @@ const teachersData = [
   },
   {
     id: 2,
-    name: "שרה כהן",
-    title: "מרצה בכירה",
-    description: "מרצה מנוסה בתחום הנהלת חשבונות עם ניסיון של מעל 15 שנה.",
-    fullDescription:
-      "בוגרת האוניברסיטה העברית עם תואר שני בכלכלה וחשבונאות. מתמחה בחשבות שכר ומערכות מידע חשבונאיות.",
-    quote: "החשבונאות היא שפה, ואני מלמדת אתכם לדבר בה בשטף.",
-    experience: "עבדה במשרדי רואי חשבון מובילים לפני שעברה להוראה.",
-    results: "מעל 500 בוגרים מצאו עבודה בתחום תוך 3 חודשים מסיום הקורס.",
+    description: (
+      <>
+        מרצה מנוסה, בת 28, בעלת ניסיון של מעל ל-7 שנים בתחום ביקורת ודיווחים
+        כספיים.
+        <br />
+        היא בוגרת האוניברסיטה העברית ובעלת תעודות מקצועיות בתחום הביקורת הפנימית
+        ויעוץ עסקי.
+        <br />
+        במהלך קריירתה ליוותה מעל ל-400 תלמידים וסטודנטים, ומתמחה בהכנה לבחינות
+        מקצועיות ולשוק העבודה
+      </>
+    ),
+    fullDescription: (
+      <>
+        היא מתמחה בהעברת חומר מורכב בצורה פשוטה ומובנה, עם דגש על הבנה עמוקה
+        ויישום מעשי.
+        <br />
+        התלמידים שלה זוכים ללמידה אינטראקטיבית, כלים דיגיטליים מתקדמים, תרגולים
+        מותאמים אישית וליווי צמוד עד להשמה בעבודה.
+      </>
+    ),
+    quote: (
+      <>
+        אני מאמינה שכל תלמיד יכול להצליח – צריך רק למצוא את הדרך הנכונה ללמד
+        אותו ולתת לו את הביטחון שהוא צריך.
+      </>
+    ),
     image: "/images/our_teachers/teacher_1.webp",
   },
 ];
@@ -56,86 +75,66 @@ const teachersData = [
 export function TeachersSlider() {
   return (
     <div className="w-full max-w-8xl mx-auto px-4">
-      <Carousel className="w-full">
+      <Carousel
+        className="w-full"
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+      >
         <CarouselContent>
           {teachersData.map((teacher) => (
             <CarouselItem key={teacher.id}>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 min-h-[600px]">
+              <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-20 min-h-[600px]">
                 {/* Изображение справа (в RTL первый элемент) */}
                 <div className="flex justify-center lg:justify-end items-end">
-                  <div className="relative flex items-center gap-2">
-                    {/* Кнопка Next слева от изображения */}
-                    <CarouselNext
-                      className="text-primary border-primary hover:bg-primary hover:text-white w-12 h-12 rounded-full z-10 p-0 flex items-center justify-center"
-                      style={{ fontSize: 0 }}
-                    >
-                      <Image
-                        src="/icons/our_teachers/arrow_right.svg"
-                        alt="next"
-                        width={24}
-                        height={24}
-                        className="w-6 h-6"
-                      />
-                      <span className="sr-only">Next</span>
-                    </CarouselNext>
+                  <div className="relative">
+                    <Image
+                      src={teacher.image}
+                      alt="teacher"
+                      width={550}
+                      height={650}
+                      className="rounded-lg w-[400px] h-[500px] lg:w-[550px] lg:h-[650px] object-cover"
+                    />
 
-                    <div className="relative">
-                      <Image
-                        src={teacher.image}
-                        alt="teacher"
-                        width={550}
-                        height={650}
-                        className="rounded-lg w-[400px] h-[500px] lg:w-[550px] lg:h-[650px] object-cover"
-                      />
-                      <div className="absolute bottom-4 right-4 bg-black/70 rounded-full p-2 flex items-center gap-2">
-                        <Image
-                          src="/icons/s/verified.svg"
-                          alt="verified"
-                          width={24}
-                          height={24}
-                          className="w-6 h-6"
-                        />
-                        <span className="text-white text-sm font-semibold">
-                          {teacher.title}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Кнопка Previous справа от изображения */}
-                    <CarouselPrevious
-                      className="text-primary border-primary hover:bg-primary hover:text-white w-12 h-12 rounded-full z-10 p-0 flex items-center justify-center"
-                      style={{ fontSize: 0 }}
-                    >
+                    {/* Кнопки навигации поверх картинки */}
+                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 text-primary border-primary hover:bg-primary hover:text-white w-12 h-12 rounded-full">
                       <Image
                         src="/icons/our_teachers/arrow_left.svg"
-                        alt="previous"
-                        width={24}
-                        height={24}
-                        className="w-6 h-6"
+                        alt="arrow-left"
+                        width={50}
+                        height={50}
                       />
-                      <span className="sr-only">Previous</span>
                     </CarouselPrevious>
+                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 text-primary border-primary hover:bg-primary hover:text-white w-12 h-12 rounded-full">
+                      <Image
+                        src="/icons/our_teachers/arrow_right.svg"
+                        alt="arrow-right"
+                        width={50}
+                        height={50}
+                      />
+                    </CarouselNext>
                   </div>
                 </div>
 
                 {/* Текст слева (в RTL второй элемент) */}
-                <div className="space-y-6 text-right flex flex-col justify-start w-full max-w-[700px]">
+                <div className="space-y-6 px-4 md:px-8 lg:px-0 text-center lg:text-right flex flex-col  justify-start w-full max-w-[full]   lg:max-w-[700px]">
                   <div>
-                    <h1 className="text-[32px] lg:text-[64px] font-bold text-primary mb-2">
+                    <h1 className="text-[32px] md:text-[48px] lg:text-[64px] font-bold text-primary mb-2">
                       המורים שלנו
                     </h1>
                   </div>
 
-                  <div className="text-[16px] lg:text-[20px] line-clamp-[28px] text-white leading-relaxed">
+                  <div className="text-[16px] md:text-[20px] lg:text-[20px] line-clamp-[28px] text-white leading-relaxed">
                     {teacher.description}
                   </div>
 
-                  <p className="text-[16px] lg:text-[20px] line-clamp-[28px] text-white leading-relaxed">
+                  <p className="text-[16px] md:text-[20px] lg:text-[20px] line-clamp-[28px] text-white leading-relaxed">
                     {teacher.fullDescription}
                   </p>
 
-                  <div className="bg-accent text-black p-8">
-                    <p className="text-[16px] lg:text-[23px]  font-semibold text-right">
+                  <div className="bg-accent text-black p-4 lg:p-8 max-w-[full]">
+                    <p className="text-[18px] lg:text-[23px]  font-semibold text-right">
                       {teacher.quote}
                     </p>
                   </div>
