@@ -1,6 +1,6 @@
-import { Form } from "@/components/ui/form";
+import { Form } from "@/components/shared/form";
+import { FormContainer } from "@/components/shared/form_container";
 import { FeaturesList } from "./features_list";
-import { FormContainer } from "@/components/ui/form_container";
 
 export function WhyChooseUs() {
   return (

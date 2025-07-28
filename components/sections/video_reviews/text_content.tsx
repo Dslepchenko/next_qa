@@ -1,4 +1,6 @@
-import { AnimatedButton } from "@/components/animated-button";
+"use client";
+
+import { GreenButton } from "@/components/shared/green_button";
 import Image from "next/image";
 
 const videoReviewsData = [
@@ -38,6 +40,16 @@ const videoReviewsData = [
 ];
 
 export function TextContent() {
+  const scrollToForm = () => {
+    const formElement = document.getElementById("contact-form");
+    if (formElement) {
+      formElement.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col items-center lg:items-start justify-start gap-4 lg:gap-10  pb-8 lg:pb-20">
       <p className="text-[16px] lg:text-[20px]  text-black mb-2">
@@ -66,9 +78,7 @@ export function TextContent() {
           </div>
         ))}
       </div>
-      <AnimatedButton className="bg-primary bg-[url('/images/common/bg_button_green.png')] bg-contain bg-no-repeat text-black px-8 py-2  lg:py-4 font-semibold transition-colors min-w-[300px]">
-        לשיחת ייעוץ ללא התחייבות
-      </AnimatedButton>
+      <GreenButton onClick={scrollToForm}>לשיחת ייעוץ ללא התחייבות</GreenButton>
     </div>
   );
 }

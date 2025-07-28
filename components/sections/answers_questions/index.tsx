@@ -1,6 +1,6 @@
-import { FormContainer } from "@/components/ui/form_container";
+import { FormContainer } from "@/components/shared/form_container";
 import { QuestionsList } from "./questions_list";
-import { Form } from "@/components/ui/form";
+import { Form } from "@/components/shared/form";
 
 export function AnswersQuestions() {
   return (

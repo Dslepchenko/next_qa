@@ -133,3 +133,24 @@
     font-size: 24px;
   }
 }
+
+@layer components {
+  .our-teachers-bg {
+    background-image: linear-gradient(90deg, #000 5.63%, #008571 96.9%),
+      url("/images/our_teachers/bg_mobile.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+  }
+
+  @media (min-width: 1024px) {
+    .our-teachers-bg {
+      background-image: linear-gradient(90deg, #000 5.63%, #008571 96.9%),
+        url("/images/our_teachers/bg.webp");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}

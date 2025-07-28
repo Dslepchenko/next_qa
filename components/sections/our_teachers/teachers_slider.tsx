@@ -4,7 +4,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "@/ui/carousel";
 import Image from "next/image";
 
 const teachersData = [
@@ -38,6 +38,11 @@ const teachersData = [
       </>
     ),
     image: "/images/our_teachers/teacher_1.webp",
+    sticker: {
+      text: "David Bonel",
+      description: "מוֹרֶה",
+      icon: "/icons/our_teachers/avatar_teacher_1.svg",
+    },
   },
   {
     id: 2,
@@ -69,6 +74,11 @@ const teachersData = [
       </>
     ),
     image: "/images/our_teachers/teacher_1.webp",
+    sticker: {
+      text: "David Bonel 2",
+      description: "מוֹרֶה",
+      icon: "/icons/our_teachers/avatar_teacher_1.svg",
+    },
   },
 ];
 
@@ -85,7 +95,7 @@ export function TeachersSlider() {
         <CarouselContent>
           {teachersData.map((teacher) => (
             <CarouselItem key={teacher.id}>
-              <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-20 min-h-[600px]">
+              <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-20 min-h-[600px] relative">
                 {/* Изображение справа (в RTL первый элемент) */}
                 <div className="flex justify-center lg:justify-end items-end">
                   <div className="relative">
@@ -114,6 +124,33 @@ export function TeachersSlider() {
                         height={50}
                       />
                     </CarouselNext>
+
+                    {/* Стикер поверх картинки */}
+                    <div className="flex flex-row items-center justify-center gap-4 absolute bottom-4 right-4">
+                      <Image
+                        src={teacher.sticker.icon}
+                        alt="sticker"
+                        width={48}
+                        height={48}
+                        className="w-[42px] h-[42px] lg:w-[48px] lg:h-[48px]"
+                      />
+                      <div className="flex flex-col items-start justify-center">
+                        <div className="flex flex-row items-center justify-center gap-4">
+                          <p className="text-[16px] md:text-[18px] font-bold text-white leading-relaxed">
+                            {teacher.sticker.text}
+                          </p>
+                          <Image
+                            src="/icons/our_teachers/circle-check.svg"
+                            alt="star"
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                        <p className="text-[16px] md:text-[20px] lg:text-[20px] text-white leading-relaxed">
+                          {teacher.sticker.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

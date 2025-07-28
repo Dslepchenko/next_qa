@@ -1,13 +1,16 @@
-import { AnimatedButton } from "@/components/animated-button";
+"use client";
+
+import { AnimatedButton } from "@/ui/animated-button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { FormContainer } from "@/components/ui/form_container";
+} from "@/ui/carousel";
+import { FormContainer } from "@/components/shared/form_container";
 import Image from "next/image";
+import { GoldButton } from "@/components/shared/gold_button";
 
 const successStoriesData = [
   {
@@ -81,6 +84,16 @@ const successStoriesData = [
 ];
 
 export function SuccessStorySlider() {
+  const scrollToForm = () => {
+    const formElement = document.getElementById("contact-form");
+    if (formElement) {
+      formElement.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    }
+  };
+
   return (
     <div className="w-full max-w-8xl mx-auto px-4">
       <Carousel
@@ -192,9 +205,12 @@ export function SuccessStorySlider() {
                       </p>
                     </div>
 
-                    <AnimatedButton className="bg-accent bg-[url('/images/common/bg_button_gold.png')] bg-contain bg-no-repeat text-black px-8 py-2  lg:py-4 font-semibold transition-colors min-w-[300px]">
+                    <GoldButton
+                      onClick={scrollToForm}
+                      className="w-[300px] py-4 px-10"
+                    >
                       אני רוצה להתחיל
-                    </AnimatedButton>
+                    </GoldButton>
                   </div>
                 </FormContainer>
               </div>

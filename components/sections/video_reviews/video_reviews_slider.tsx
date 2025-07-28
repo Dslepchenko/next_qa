@@ -6,7 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselApi,
-} from "@/components/ui/carousel";
+} from "@/ui/carousel";
 import Image from "next/image";
 import { useEffect } from "react";
 import {
@@ -98,6 +98,7 @@ export function VideoSlider() {
             <CarouselContent>
               {videoData.map((video, index) => {
                 const videoId = getYouTubeVideoId(video.youtubeUrl);
+                const isActive = current === index;
                 return (
                   <CarouselItem
                     key={video.id}
@@ -105,14 +106,40 @@ export function VideoSlider() {
                   >
                     {/* Мобилка и планшет - обычный слайд */}
                     <div className="lg:hidden relative bg-black  overflow-hidden w-[280px] h-[500px] sm:w-[290px] sm:h-[520px] mx-auto ">
-                      <iframe
-                        className="w-full h-full"
-                        src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
-                        title={video.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                      {/* YouTube iframe - рендерится только для активного слайда */}
+                      {isActive && (
+                        <iframe
+                          className="w-full h-full"
+                          src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
+                          title={video.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      )}
+
+                      {/* Placeholder для неактивных слайдов */}
+                      {!isActive && (
+                        <div className="absolute inset-0 bg-black flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                              <svg
+                                className="w-8 h-8 text-white"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <polygon points="5,3 19,12 5,21" />
+                              </svg>
+                            </div>
+                            <h3 className="text-white text-sm font-bold mb-1">
+                              {video.title}
+                            </h3>
+                            <p className="text-gray-300 text-xs">
+                              Нажмите для просмотра
+                            </p>
+                          </div>
+                        </div>
+                      )}
 
                       <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-lg">
                         <h3 className="text-white text-sm font-bold mb-1">
@@ -136,14 +163,40 @@ export function VideoSlider() {
 
                       {/* Видео внутри экрана телефона */}
                       <div className="absolute top-[100px]  right-[71px] bottom-[220px] rounded-[5px] z-20 h-[639px] w-[340px] overflow-hidden bg-black">
-                        <iframe
-                          className="w-full h-full"
-                          src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
-                          title={video.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
+                        {/* YouTube iframe - рендерится только для активного слайда */}
+                        {isActive && (
+                          <iframe
+                            className="w-full h-full"
+                            src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
+                            title={video.title}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        )}
+
+                        {/* Placeholder для неактивных слайдов на десктопе */}
+                        {!isActive && (
+                          <div className="absolute inset-0 bg-black flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                                <svg
+                                  className="w-8 h-8 text-white"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <polygon points="5,3 19,12 5,21" />
+                                </svg>
+                              </div>
+                              <h3 className="text-white text-sm font-bold mb-1">
+                                {video.title}
+                              </h3>
+                              <p className="text-gray-300 text-xs">
+                                Нажмите для просмотра
+                              </p>
+                            </div>
+                          </div>
+                        )}
 
                         {/* Overlay с информацией для десктопа */}
                         <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-lg">
