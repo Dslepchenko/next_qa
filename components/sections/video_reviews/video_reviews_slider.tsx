@@ -82,27 +82,31 @@ export function VideoSlider() {
   };
 
   return (
-    <div className="w-full mx-auto px-4 ">
+    <div className="w-full mx-auto px-4 py-8 lg:-mb-[150px]">
       <div className="flex flex-col lg:flex-row-reverse lg:items-center lg:justify-center lg:gap-8 items-center justify-center gap-6 relative">
         {/* Основной слайдер */}
-        <div className="relative flex-shrink-0 w-[280px] sm:w-[320px] lg:w-[340px]">
+        <div className="relative flex-shrink-0 w-[280px] sm:w-[600px] lg:w-[500px]">
           <Carousel
             setApi={setApi}
             className="w-full"
             opts={{
               align: "start",
               loop: true,
+              slidesToScroll: 1,
             }}
           >
             <CarouselContent>
               {videoData.map((video, index) => {
                 const videoId = getYouTubeVideoId(video.youtubeUrl);
                 return (
-                  <CarouselItem key={video.id}>
-                    <div className="relative bg-black overflow-hidden w-[280px] h-[500px] sm:w-[320px] sm:h-[580px] lg:w-[340px] lg:h-[645px] mx-auto">
-                      {/* YouTube iframe */}
+                  <CarouselItem
+                    key={video.id}
+                    className="basis-full sm:basis-1/2 lg:basis-full"
+                  >
+                    {/* Мобилка и планшет - обычный слайд */}
+                    <div className="lg:hidden relative bg-black  overflow-hidden w-[280px] h-[500px] sm:w-[290px] sm:h-[520px] mx-auto ">
                       <iframe
-                        className="w-full h-full "
+                        className="w-full h-full"
                         src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
                         title={video.title}
                         frameBorder="0"
@@ -110,7 +114,6 @@ export function VideoSlider() {
                         allowFullScreen
                       />
 
-                      {/* Overlay с информацией */}
                       <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-lg">
                         <h3 className="text-white text-sm font-bold mb-1">
                           {video.title}
@@ -118,6 +121,39 @@ export function VideoSlider() {
                         <p className="text-gray-200 text-xs">
                           {video.description}
                         </p>
+                      </div>
+                    </div>
+
+                    {/* Десктоп - слайд в телефоне */}
+                    <div className="hidden lg:block relative w-[480px] h-[850px] mx-auto z-30">
+                      {/* Картинка телефона */}
+                      <Image
+                        src="/images/video_reviews/phone.png"
+                        alt="phone"
+                        fill
+                        className="object-contain z-10"
+                      />
+
+                      {/* Видео внутри экрана телефона */}
+                      <div className="absolute top-[100px]  right-[71px] bottom-[220px] rounded-[5px] z-20 h-[639px] w-[340px] overflow-hidden bg-black">
+                        <iframe
+                          className="w-full h-full"
+                          src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
+                          title={video.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+
+                        {/* Overlay с информацией для десктопа */}
+                        <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-t from-black/80 to-transparent p-3 rounded-lg">
+                          <h3 className="text-white text-sm font-bold mb-1">
+                            {video.title}
+                          </h3>
+                          <p className="text-gray-200 text-xs">
+                            {video.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </CarouselItem>
@@ -128,7 +164,7 @@ export function VideoSlider() {
         </div>
 
         {/* Навигация и пагинация */}
-        <div className="flex flex-row lg:flex-col items-center gap-4 lg:min-w-[120px] w-full lg:w-auto justify-center">
+        <div className="flex flex-row lg:flex-col items-center gap-4 lg:min-w-[120px] lg:mb-30 w-full lg:w-auto justify-center">
           {/* Стрелка влево/вверх */}
           <button
             onClick={scrollPrev}
