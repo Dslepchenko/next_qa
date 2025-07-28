@@ -1,5 +1,4 @@
 import { AnimatedButton } from "@/components/animated-button";
-import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -95,7 +94,7 @@ export function SuccessStorySlider() {
           {successStoriesData.map((story) => (
             <CarouselItem key={story.id}>
               <div className="flex flex-col max-w-[1200px] mx-auto relative my-4 lg:my-5 bg-gray-100">
-                <div className="lg:grid lg:grid-cols-2 gap-10 lg:gap-20 min-h-[100%] lg:min-h-[600px] py-10 lg:py-0 pr-2 lg:pr-10">
+                <div className="lg:grid lg:grid-cols-2 gap-10 lg:gap-20 min-h-[55vh] lg:min-h-[600px] py-10 lg:py-0 pr-2 lg:pr-10">
                   {/* Текст */}
                   <div className="space-y-6 px-4 md:px-8 lg:px-0 text-center lg:text-right flex flex-col justify-center w-full max-w-full lg:max-w-[700px]">
                     {/* Секции с иконками */}
