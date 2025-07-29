@@ -92,10 +92,10 @@ export function TeachersSlider() {
           loop: true,
         }}
       >
-        <CarouselContent>
+        <CarouselContent className="items-end">
           {teachersData.map((teacher) => (
             <CarouselItem key={teacher.id}>
-              <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-20 min-h-[600px] relative">
+              <div className="flex flex-col-reverse  items-end lg:grid lg:grid-cols-2 gap-20 min-h-[600px] relative">
                 {/* Изображение справа (в RTL первый элемент) */}
                 <div className="flex justify-center lg:justify-end items-end">
                   <div className="relative">

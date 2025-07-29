@@ -8,13 +8,13 @@ export function Rating() {
           מעל 1300+ תלמידים מרוצים
         </p>
         <div className="flex items-center gap-4 justify-end w-full">
+          <p className="text-[20px] font-bold text-white w-full">מעולה</p>
           <Image
             src="/icons/hero/rating.svg"
             alt="rating"
             width={170}
             height={100}
           />
-          <p className="text-[20px] font-bold text-white w-full">מעולה</p>
         </div>
       </div>
       <Image
