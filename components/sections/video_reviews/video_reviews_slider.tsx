@@ -16,16 +16,14 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-// Функция для извлечения ID видео из YouTube URL
-function getYouTubeVideoId(url: string): string {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return match && match[2].length === 11 ? match[2] : "";
-}
-
-// Функция для получения thumbnail YouTube видео
-function getYouTubeThumbnail(videoId: string): string {
-  return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+// Простая функция для преобразования YouTube URL в embed формат
+function getEmbedUrl(youtubeUrl: string): string {
+  const videoId = youtubeUrl.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|&v=))([^#&?]*)/
+  )?.[1];
+  return videoId
+    ? `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`
+    : youtubeUrl;
 }
 
 const videoData = [
@@ -33,24 +31,28 @@ const videoData = [
     id: 1,
     title: "סיפור הצלחה - מרים כהן",
     youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    thumbnailUrl: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
     description: "איך השתלבתי בעבודה חדשה תוך 3 חודשים",
   },
   {
     id: 2,
     title: "מחשב שכר - דוד לוי",
     youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    thumbnailUrl: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
     description: "מעבודה פיזית לקריירה במשרד",
   },
   {
     id: 3,
     title: "הכשרה מקצועית - שרה אברהם",
     youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    thumbnailUrl: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
     description: "התחלה חדשה בגיל 40",
   },
   {
     id: 4,
     title: "הצלחה בעסקים - יוסי זוהר",
     youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    thumbnailUrl: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
     description: "פתיחת עסק עצמאי אחרי הקורס",
   },
 ];
@@ -97,7 +99,6 @@ export function VideoSlider() {
           >
             <CarouselContent>
               {videoData.map((video, index) => {
-                const videoId = getYouTubeVideoId(video.youtubeUrl);
                 const isActive = current === index;
                 return (
                   <CarouselItem
@@ -110,7 +111,7 @@ export function VideoSlider() {
                       {isActive && (
                         <iframe
                           className="w-full h-full"
-                          src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
+                          src={getEmbedUrl(video.youtubeUrl)}
                           title={video.title}
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -167,7 +168,7 @@ export function VideoSlider() {
                         {isActive && (
                           <iframe
                             className="w-full h-full"
-                            src={`https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&modestbranding=1`}
+                            src={getEmbedUrl(video.youtubeUrl)}
                             title={video.title}
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -230,7 +231,6 @@ export function VideoSlider() {
           {/* Пагинация между стрелками */}
           <div className="flex flex-row lg:flex-col gap-3 lg:gap-3  lg:pb-0 px-2 lg:px-0">
             {videoData.map((video, index) => {
-              const videoId = getYouTubeVideoId(video.youtubeUrl);
               const isActive = current === index;
 
               return (
@@ -251,7 +251,7 @@ export function VideoSlider() {
                   {/* Десктопная версия - превью */}
                   <div className="hidden lg:block w-full h-full">
                     <Image
-                      src={getYouTubeThumbnail(videoId)}
+                      src={video.thumbnailUrl}
                       alt={video.title}
                       fill
                       className="object-cover"
