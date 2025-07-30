@@ -26,6 +26,7 @@ export function HeroSection() {
           alt="logo"
           width={500}
           height={100}
+          priority
           className="w-[200px] h-[55px]  md:w-[350px] md:h-[100px] lg:w-[500px] lg:h-[100px]"
         />
 
